@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/cadastrar-pessoa")
+@RequestMapping("/api/cadastrar-pessoa-juridica")
 public class CadastroPJController {
 
     private static final Logger log = LoggerFactory.getLogger(CadastroPJController.class);
