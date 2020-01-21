@@ -30,6 +30,14 @@ public class FuncionarioController {
 
     }
 
+    /**
+     * Atualiza informações de um funcionário identificado por id
+     *
+     * @param id
+     * @param funcionarioDto
+     * @param result
+     * @return
+     */
     @PutMapping(value = "/{id}")
     public ResponseEntity<Response<FuncionarioDto>> atualizar(@PathVariable("id") Long id, @Valid @RequestBody FuncionarioDto funcionarioDto, BindingResult result) {
         log.info("Atualizando funcionario de id {}", id);
@@ -55,6 +63,12 @@ public class FuncionarioController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * Retorna um FuncionarioDto baseado no funcionário passado
+     *
+     * @param funcionario
+     * @return
+     */
     private FuncionarioDto converterFuncionarioDto(Funcionario funcionario) {
         FuncionarioDto funcionarioDto = new FuncionarioDto();
         funcionarioDto.setId(funcionario.getId());
@@ -76,6 +90,13 @@ public class FuncionarioController {
         return funcionarioDto;
     }
 
+    /**
+     * Atualiza o Funcionario com as informações do FuncionarioDto recebido pela api.
+     *
+     * @param funcionario
+     * @param funcionarioDto
+     * @param result
+     */
     private void atualizarDadosFuncionario(Funcionario funcionario, FuncionarioDto funcionarioDto, BindingResult result) {
 
         funcionario.setNome(funcionarioDto.getNome());

@@ -39,6 +39,7 @@ public class LancamentoServiceImpl implements LancamentoService {
 
     @Override
     public void remover(Long id) {
-
+        log.info("Removendo o lançamento ID {}", id);
+        this.lancamentoRepository.delete(this.buscarPorId(id).get());
     }
 }
