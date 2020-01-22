@@ -1,6 +1,5 @@
 package com.ponto.pontointeligente.api.controllers;
 
-import com.google.gson.Gson;
 import com.ponto.pontointeligente.api.dtos.EmpresaDto;
 import com.ponto.pontointeligente.api.entities.Empresa;
 import com.ponto.pontointeligente.api.models.Test;
@@ -35,13 +34,10 @@ public class EmpresaController {
     public ResponseEntity<Response<Test>> externalRequestTest() {
 
         final RestTemplate restTemplate = new RestTemplate();
-        final String result = restTemplate.getForObject("https://jsonplaceholder.typicode.com/posts/1", String.class);
-
-        Gson gson = new Gson();
-        Test test = gson.fromJson(result, Test.class);
+        final Test result = restTemplate.getForObject("https://jsonplaceholder.typicode.com/posts/1", Test.class);
 
         Response<Test> response = new Response<>();
-        response.setData(test);
+        response.setData(result);
 
         return ResponseEntity.ok(response);
     }
@@ -53,7 +49,7 @@ public class EmpresaController {
         Response<EmpresaDto> response = new Response<EmpresaDto>();
         Optional<Empresa> empresa = empresaService.buscarPorCnpj(cnpj);
 
-        if(empresa.isEmpty()) {
+        if (empresa.isEmpty()) {
             log.info("Empresa nao encontrada");
             response.getErrors().add("Empresa não encontrada para esse cnpj");
             return ResponseEntity.badRequest().body(response);

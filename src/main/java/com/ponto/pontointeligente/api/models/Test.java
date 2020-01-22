@@ -1,13 +1,11 @@
 package com.ponto.pontointeligente.api.models;
 
-import java.io.Serializable;
-
-public class Test implements Serializable {
+public class Test {
 
     private int userId;
     private int id;
     private String title;
-    private Boolean body;
+    private String body;
 
     public int getUserId() {
         return userId;
@@ -21,7 +19,7 @@ public class Test implements Serializable {
         return title;
     }
 
-    public Boolean getBody() {
+    public String getBody() {
         return body;
     }
 
@@ -37,7 +35,7 @@ public class Test implements Serializable {
         this.title = title;
     }
 
-    public void setBody(Boolean body) {
+    public void setBody(String body) {
         this.body = body;
     }
 }
