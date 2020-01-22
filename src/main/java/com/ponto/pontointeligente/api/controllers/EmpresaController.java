@@ -1,6 +1,7 @@
 package com.ponto.pontointeligente.api.controllers;
 
 import com.ponto.pontointeligente.api.dtos.EmpresaDto;
+import com.ponto.pontointeligente.api.dtos.LancamentoDto;
 import com.ponto.pontointeligente.api.entities.Empresa;
 import com.ponto.pontointeligente.api.models.Test;
 import com.ponto.pontointeligente.api.response.Response;
@@ -8,11 +9,10 @@ import com.ponto.pontointeligente.api.services.EmpresaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
@@ -31,10 +31,28 @@ public class EmpresaController {
     }
 
     @GetMapping(value = "/request/test")
-    public ResponseEntity<Response<Test>> externalRequestTest() {
+    public ResponseEntity<Response<Test>> externalRequestGetTest() {
 
         final RestTemplate restTemplate = new RestTemplate();
         final Test result = restTemplate.getForObject("https://jsonplaceholder.typicode.com/posts/1", Test.class);
+
+        Response<Test> response = new Response<>();
+        response.setData(result);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping(value = "/request/test")
+    public ResponseEntity<Response<Test>> externalRequestPostTest(@RequestBody Test test) {
+
+        final RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Accept", "application/json");
+
+        HttpEntity<Test> entity = new HttpEntity<>(test, headers);
+
+        final Test result = restTemplate.postForObject("https://jsonplaceholder.typicode.com/posts", entity, Test.class);
 
         Response<Test> response = new Response<>();
         response.setData(result);
