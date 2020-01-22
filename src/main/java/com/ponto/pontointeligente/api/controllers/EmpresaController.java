@@ -1,9 +1,8 @@
 package com.ponto.pontointeligente.api.controllers;
 
 import com.ponto.pontointeligente.api.dtos.EmpresaDto;
-import com.ponto.pontointeligente.api.dtos.LancamentoDto;
 import com.ponto.pontointeligente.api.entities.Empresa;
-import com.ponto.pontointeligente.api.models.Test;
+import com.ponto.pontointeligente.Test;
 import com.ponto.pontointeligente.api.response.Response;
 import com.ponto.pontointeligente.api.services.EmpresaService;
 import org.slf4j.Logger;

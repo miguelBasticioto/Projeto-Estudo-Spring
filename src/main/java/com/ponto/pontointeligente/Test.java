@@ -1,4 +1,4 @@
-package com.ponto.pontointeligente.api.models;
+package com.ponto.pontointeligente;
 
 public class Test {
 
