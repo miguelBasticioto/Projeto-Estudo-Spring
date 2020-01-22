@@ -1,5 +1,6 @@
 package com.ponto.pontointeligente;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class FunctionalExample {
@@ -9,7 +10,6 @@ public class FunctionalExample {
         functionalTest(success -> {
 
             System.out.println(success);
-            return null;
 
         }, error -> {
 
@@ -20,8 +20,8 @@ public class FunctionalExample {
 
     }
 
-    private static void functionalTest(Function<String, Void> success, Function<String, String> error) {
-        success.apply("Sucesso");
+    private static void functionalTest(Consumer<String> success, Function<String, String> error) {
+        success.accept("Sucesso");
         error.apply("Erro");
     }
 
